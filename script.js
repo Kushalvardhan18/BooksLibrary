@@ -12,9 +12,8 @@ function getData(){
             const bookAuthor =books.data.data[i].volumeInfo.authors
             const bookPublisher =books.data.data[i].volumeInfo.publisher
             const bookPublishedDate =books.data.data[i].volumeInfo.publishedDate
-            const bookSmallThumbnail =books.data.data[i].volumeInfo.imageLinks.smallThumbnail
-            const bookBigThumbnail =books.data.data[i].volumeInfo.imageLinks.thumbnail
-            booksData(bookTitle,bookAuthor,bookPublisher,bookPublishedDate,bookSmallThumbnail)
+            const bookThumbnail =books.data.data[i].volumeInfo.imageLinks.thumbnail
+            booksData(bookTitle,bookAuthor,bookPublisher,bookPublishedDate,bookThumbnail)
         }
         
 
@@ -27,19 +26,27 @@ function getData(){
 getData()
 
 
-function booksData(bookTitle,bookAuthor,bookPublisher,bookPublishedDate,bookSmallThumbnail){
+function booksData(bookTitle,bookAuthor,bookPublisher,bookPublishedDate,bookThumbnail){
 
     const booksContainer = document.querySelector('.booksContainer')
     const books = document.createElement('div')
-
-    const smallThumbnail = document.createElement('img')
-    const title = document.createElement('h3')
-
+    const booksFooter = document.createElement('div')
+    booksFooter.classList.add("booksFooter")
+    const thumbnail = document.createElement('img')
+    const title = document.createElement('h2')
+    const publisher = document.createElement('h4')
+    const pubDate = document.createElement('h4')
+    
     books.classList.add('books')
-    smallThumbnail.src = bookSmallThumbnail
+    thumbnail.classList.add('image')
+    thumbnail.src = bookThumbnail
     title.innerText = bookTitle
-    books.append(title)
-    books.append(smallThumbnail)
+    publisher.innerText = `Published By : ${bookPublisher}`
+    pubDate.innerText = `Published On : ${bookPublishedDate}`
+
+    booksFooter.append(publisher,pubDate)
+    books.append(title,thumbnail,booksFooter)
     booksContainer.append(books)
+ 
     
 }
