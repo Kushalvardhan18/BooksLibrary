@@ -1,3 +1,7 @@
+const gridView = document.querySelector('#gridView')
+const listView = document.querySelector('#listView')
+// gridView.style.display = "none"
+// listView.style.display = "block"
 
 
 const url = "https://api.freeapi.app/api/v1/public/books"
@@ -25,10 +29,10 @@ function getData(){
 
 getData()
 
+const booksContainer = document.querySelector('.booksContainer')
 
 function booksData(bookTitle,bookAuthor,bookPublisher,bookPublishedDate,bookThumbnail){
 
-    const booksContainer = document.querySelector('.booksContainer')
     const books = document.createElement('div')
     const booksFooter = document.createElement('div')
     booksFooter.classList.add("booksFooter")
@@ -50,3 +54,37 @@ function booksData(bookTitle,bookAuthor,bookPublisher,bookPublishedDate,bookThum
  
     
 }
+
+
+
+function booksView(book){
+const books = document.querySelector('.books')
+    
+    if(listView.style.display === "block"){
+        listView.style.display = "none";
+        gridView.style.display = "block";
+        booksContainer.style.flexDirection = "column"
+        booksContainer.style.alignItems = "center";
+        books.style.flexDirection = "row"
+        book.style.width = "90%";
+
+    }
+    
+    else{
+        gridView.style.display = "none"
+        listView.style.display = "block";
+         booksContainer.style.flexDirection = "row"
+         booksContainer.style.justifyContent = "center";
+        book.style.flexDirection = "column"
+        book.style.width = "30%";
+
+    }
+    
+}
+
+const books = document.querySelectorAll('.books')
+books.forEach(()=>{
+    booksView()
+})
+gridView.addEventListener('click',booksView)
+listView.addEventListener('click',booksView)
