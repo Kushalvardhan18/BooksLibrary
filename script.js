@@ -45,14 +45,13 @@ function booksData(bookTitle, bookAuthor, bookPublisher, bookPublishedDate, book
     thumbnail.classList.add('image')
     thumbnail.src = bookThumbnail
     title.innerText = bookTitle
-    publisher.innerText = `Published By : ${bookPublisher}`
-    pubDate.innerText = `Published On : ${bookPublishedDate}`
+    publisher.innerText = `Published By : \n \n ${bookPublisher}`
+    pubDate.innerText = `Published On : \n \n ${bookPublishedDate}`
 
     booksFooter.append(publisher, pubDate)
     books.append(title, thumbnail, booksFooter)
     booksContainer.append(books)
-
-
+    
 }
 
 
@@ -66,7 +65,7 @@ function booksView() {
             booksContainer.style.flexDirection = "column"
             booksContainer.style.alignContent = "center";
             book.style.flexDirection = "row"
-            book.style.width = "90%";
+            book.style.width = "93%";
 
         })
         }
@@ -84,11 +83,24 @@ function booksView() {
         }
    
 
+    }
+
+function bookDetails(){
+    console.log("Kushal");
 }
 
-// const books = document.querySelectorAll('.books')
-// books.forEach(() => {
-//     booksView()
-// })
+
+
+    const books = document.querySelectorAll('.books')
+    console.log(books);
+    
+    books.forEach((book)=>{
+        book.addEventListener("click",()=>{
+            bookDetails()
+            
+        })
+    })
+
+
 gridView.addEventListener('click', booksView)
 listView.addEventListener('click', booksView)

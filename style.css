@@ -21,6 +21,7 @@ header h1{
 .books{
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     width: 30%;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -42,6 +43,9 @@ header h1{
     display: flex;
     justify-content: end;
     margin:20px 50px;
+}
+#gridView{
+    width: 50px;
 }
 #gridView:hover{
     cursor: pointer;
