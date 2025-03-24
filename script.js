@@ -58,28 +58,17 @@ function booksData(bookTitle, bookAuthor, bookPublisher, bookPublishedDate, book
 
 function booksView() {
     const books = document.querySelectorAll('.books')
+    const booksFooter = document.querySelector('.booksFooter')
     if (listView.style.display === "block") {
-            books.forEach((book) => {
-            listView.style.display = "none";
-            gridView.style.display = "block";
-            booksContainer.style.flexDirection = "column"
-            booksContainer.style.alignContent = "center";
-            book.style.flexDirection = "row"
-            book.style.width = "93%";
-
-        })
+        booksContainer.classList.add('active')
+        listView.style.display = "none";
+        gridView.style.display = "block";
         }
 
         else {
-            // const books = document.querySelectorAll('.books')
-            books.forEach((book) => {
+            booksContainer.classList.remove('active')
             gridView.style.display = "none"
             listView.style.display = "block";
-            booksContainer.style.flexDirection = "row"
-            booksContainer.style.justifyContent = "center";
-            book.style.flexDirection = "column"
-            book.style.width = "30%"
-        })
         }
    
 

@@ -1,55 +1,86 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: gray;
-    color: white;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: rgb(66, 63, 63);
+  color: white;
 }
 
-header h1{
-    text-align: center;
-    margin: 20px;
+header h1 {
+  text-align: center;
+  margin: 20px;
+  font-size: 5em;
+  color:chartreuse;
 }
 
-.booksContainer{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+.booksContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+.booksContainer.active {
+    flex-direction: column;
+    align-content: center;
     
 }
-.books{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.booksContainer.active h2{
+    width: 50%;
+    font-size: larger;
+    text-align: start;
+}
+.booksContainer.active .books{
+    gap: 50px;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+    width: 75%;
+    justify-content:unset;
+  padding: 10px 15px;
+
+}
+.booksContainer.active .books .booksFooter{
     width: 30%;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 10px;
-    padding: 20px 30px;
-    gap: 20px;
 }
-.image{
-    height:200px;
-    width:150px;
+.booksContainer.active .books .image{
+    height: 100px;
+    width: 75px;
 }
-.booksFooter{
-    display: flex;
-    font-size: 0.9em;
-    gap: 30px;
-    width: 100%;
+.books {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+  padding: 20px 30px;
+  gap: 30px;
 }
-#view{
-    display: flex;
-    justify-content: end;
-    margin:20px 50px;
+.image {
+  height: 200px;
+  width: 150px;
 }
-#gridView{
-    width: 50px;
+.booksFooter {
+  display: flex;
+  font-size: 0.9em;
+  /* gap: 30px; */
+  justify-content: space-between;
+  width: 100%;
 }
-#gridView:hover{
-    cursor: pointer;
+#view {
+  display: flex;
+  justify-content: end;
+  margin: 20px 50px;
 }
-#listView:hover{
-    cursor: pointer;
+#gridView {
+  width: 50px;
+}
+#gridView:hover {
+  cursor: pointer;
+}
+#listView:hover {
+  cursor: pointer;
+}
+h2{
+    text-align: center;
 }
