@@ -1,21 +1,28 @@
-const api = "https://api.freeapi.app/api/v1/public/books"
+// const api = "https://api.freeapi.app/api/v1/public/books"
 const gridView = document.querySelector('#gridView')
 const listView = document.querySelector('#listView')
 const booksContainer = document.querySelector('.booksContainer')
 let pageNo = 1
 const url = `https://api.freeapi.app/api/v1/public/books?page=${pageNo}`
 const pagination = document.querySelector('.pagination')
+let heading = document.querySelector("#heading")
+// const totalPages = api.data.totalPages
 
-function paginationFn(totalPages) {
-    console.log(totalPages);
-    for(let i = 1;i<=totalPages;i++){
-        const pageNoLogo = document.createElement('span')
-        pageNoLogo.classList.add('page')
-        pageNoLogo.innerText = i 
-        pagination.append(pageNoLogo)
-    }
-}
+// function paginationFn(totalPages) {
 
+//     for(let i = 1;i<=totalPages;i++){
+//         const pageNoLogo = document.createElement('span')
+//         pageNoLogo.classList.add('page')
+//         pageNoLogo.innerText = i 
+//         pagination.append(pageNoLogo)
+//         pageNoLogo.addEventListener('click',()=>{
+//             // changePageFn(i)
+//             console.log(i);
+
+//         })
+//     }
+// }
+// paginationFn()
 
 function getData() {
     fetch(url)
@@ -24,16 +31,17 @@ function getData() {
         })
         .then((books) => {
             const arrLength = books.data.data.length
-            const totalPages = books.data.totalPages
-            paginationFn(totalPages)
             for (let i = 0; i < arrLength; i++) {
                 const bookTitle = books.data.data[i].volumeInfo.title
                 const bookAuthor = books.data.data[i].volumeInfo.authors
                 const bookPublisher = books.data.data[i].volumeInfo.publisher
                 const bookPublishedDate = books.data.data[i].volumeInfo.publishedDate
                 const bookThumbnail = books.data.data[i].volumeInfo.imageLinks.thumbnail
+                const description = books.data.data[i].volumeInfo.description
 
-                booksData(bookTitle, bookAuthor, bookPublisher, bookPublishedDate, bookThumbnail)
+                booksData(bookTitle, bookAuthor, bookPublisher, bookPublishedDate, bookThumbnail, description)
+
+
             }
         })
         .catch((error) => {
@@ -41,7 +49,7 @@ function getData() {
         })
 }
 
-function booksData(bookTitle, bookAuthor, bookPublisher, bookPublishedDate, bookThumbnail) {
+function booksData(bookTitle, bookAuthor, bookPublisher, bookPublishedDate, bookThumbnail, description) {
     const books = document.createElement('div')
     const booksFooter = document.createElement('div')
     booksFooter.classList.add("booksFooter")
@@ -61,11 +69,26 @@ function booksData(bookTitle, bookAuthor, bookPublisher, bookPublishedDate, book
     books.append(title, thumbnail, booksFooter)
     booksContainer.append(books)
 
+    // console.log(description);
+
     books.addEventListener('click', () => {
-        booksDetails()
+        // console.log(description);
+        booksDetails(title,bookAuthor,description,thumbnail)
+
     })
 }
-function booksDetails() {
+const bookDetails = document.querySelector('.bookDetails')
+function booksDetails(title,bookAuthor,description,thumbnail) {
+    heading.innerText = `${title.innerText}` || "Books Library"
+    booksContainer.style.display = 'none'
+    const bookDescription = document.createElement('p')
+    const author = document.createElement('h4')
+    author.innerText = bookAuthor
+    console.log(author);
+    
+    bookDescription.innerText = description
+    bookDetails.append(thumbnail,author,bookDescription)
+
 
 }
 
