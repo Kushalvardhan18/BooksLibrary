@@ -1,7 +1,20 @@
+const api = "https://api.freeapi.app/api/v1/public/books"
 const gridView = document.querySelector('#gridView')
 const listView = document.querySelector('#listView')
 const booksContainer = document.querySelector('.booksContainer')
-const url = "https://api.freeapi.app/api/v1/public/books"
+let pageNo = 1
+const url = `https://api.freeapi.app/api/v1/public/books?page=${pageNo}`
+const pagination = document.querySelector('.pagination')
+
+function paginationFn(totalPages) {
+    console.log(totalPages);
+    for(let i = 1;i<=totalPages;i++){
+        const pageNoLogo = document.createElement('span')
+        pageNoLogo.classList.add('page')
+        pageNoLogo.innerText = i 
+        pagination.append(pageNoLogo)
+    }
+}
 
 
 function getData() {
@@ -11,6 +24,8 @@ function getData() {
         })
         .then((books) => {
             const arrLength = books.data.data.length
+            const totalPages = books.data.totalPages
+            paginationFn(totalPages)
             for (let i = 0; i < arrLength; i++) {
                 const bookTitle = books.data.data[i].volumeInfo.title
                 const bookAuthor = books.data.data[i].volumeInfo.authors
