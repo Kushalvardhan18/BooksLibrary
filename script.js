@@ -6,23 +6,26 @@ let pageNo = 1
 const url = `https://api.freeapi.app/api/v1/public/books?page=${pageNo}`
 const pagination = document.querySelector('.pagination')
 let heading = document.querySelector("#heading")
-// const totalPages = api.data.totalPages
 
-// function paginationFn(totalPages) {
 
-//     for(let i = 1;i<=totalPages;i++){
-//         const pageNoLogo = document.createElement('span')
-//         pageNoLogo.classList.add('page')
-//         pageNoLogo.innerText = i 
-//         pagination.append(pageNoLogo)
-//         pageNoLogo.addEventListener('click',()=>{
-//             // changePageFn(i)
-//             console.log(i);
+function paginationFn(totalPages) {
+    let currentPageNo = 1
+    const pagesPerSet = 5
+    function renderPages(){
+        pagination.innerHTML = '';
+        let start = (currentPageNo - 1) * pagesPerSet + 1;
+        let end = Math.min(start + pagesPerSet - 1, totalPages);
+        for (let i = start; i <= end; i++) {
+            const pageNo = document.createElement('span')
+            pageNo.classList.add('pageNo')
+            pageNo.innerText = i
+            pagination.append(pageNo)
+        }
+    }
 
-//         })
-//     }
-// }
-// paginationFn()
+
+    renderPages()
+}
 
 function getData() {
     fetch(url)
@@ -30,6 +33,8 @@ function getData() {
             return response.json()
         })
         .then((books) => {
+            const totalPages = books.data.totalPages
+            paginationFn(totalPages)
             const arrLength = books.data.data.length
             for (let i = 0; i < arrLength; i++) {
                 const bookTitle = books.data.data[i].volumeInfo.title
@@ -69,25 +74,23 @@ function booksData(bookTitle, bookAuthor, bookPublisher, bookPublishedDate, book
     books.append(title, thumbnail, booksFooter)
     booksContainer.append(books)
 
-    // console.log(description);
 
     books.addEventListener('click', () => {
-        // console.log(description);
-        booksDetails(title,bookAuthor,description,thumbnail)
+        booksDetails(title, bookAuthor, description, thumbnail)
 
     })
 }
 const bookDetails = document.querySelector('.bookDetails')
-function booksDetails(title,bookAuthor,description,thumbnail) {
+function booksDetails(title, bookAuthor, description, thumbnail) {
     heading.innerText = `${title.innerText}` || "Books Library"
     booksContainer.style.display = 'none'
     const bookDescription = document.createElement('p')
     const author = document.createElement('h4')
     author.innerText = bookAuthor
     console.log(author);
-    
+
     bookDescription.innerText = description
-    bookDetails.append(thumbnail,author,bookDescription)
+    bookDetails.append(thumbnail, author, bookDescription)
 
 
 }
