@@ -99,3 +99,27 @@ h2 {
   border-radius: 10px;
   
 }
+dialog {
+  display: flex;
+  flex-direction: column; /* Stack elements inside */
+  align-items: center; /* Center align content */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  width: 80vw; 
+  /* max-width: 400px; Set a max width */
+  max-height: 80vh; /* Prevent overflow */
+  overflow: auto; /* Enable scrolling if needed */
+
+  background-color: white;
+  padding: 20px;
+  border: 1px solid black;
+  box-shadow: 10px 10px 5px #888888;
+  border-radius: 8px; /* Optional: rounded corners */
+}
+.bookDetails{
+  font-size: 20px;
+  padding: 20px;
+}

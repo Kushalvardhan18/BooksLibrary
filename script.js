@@ -9,22 +9,13 @@ let heading = document.querySelector("#heading")
 
 
 function paginationFn(totalPages) {
-    let currentPageNo = 1
-    const pagesPerSet = 5
-    function renderPages(){
-        pagination.innerHTML = '';
-        let start = (currentPageNo - 1) * pagesPerSet + 1;
-        let end = Math.min(start + pagesPerSet - 1, totalPages);
-        for (let i = start; i <= end; i++) {
-            const pageNo = document.createElement('span')
-            pageNo.classList.add('pageNo')
-            pageNo.innerText = i
-            pagination.append(pageNo)
-        }
+    for (let i = 1; i <= totalPages; i++) {
+        const pageNo = document.createElement('span')
+        pageNo.classList.add('pageNo')
+        pageNo.innerText = i
+        pagination.append(pageNo)
     }
 
-
-    renderPages()
 }
 
 function getData() {
@@ -76,25 +67,37 @@ function booksData(bookTitle, bookAuthor, bookPublisher, bookPublishedDate, book
 
 
     books.addEventListener('click', () => {
-        booksDetails(title, bookAuthor, description, thumbnail)
+        booksDetails(bookTitle, bookAuthor, description, bookThumbnail)
+
 
     })
 }
-const bookDetails = document.querySelector('.bookDetails')
-function booksDetails(title, bookAuthor, description, thumbnail) {
-    heading.innerText = `${title.innerText}` || "Books Library"
-    booksContainer.style.display = 'none'
+
+const dialog = document.querySelector("dialog")
+function booksDetails(bookTitle, bookAuthor, description, bookThumbnail) {
+    dialog.innerHTML = ""
+    const bookDetails = document.createElement("div");
+    bookDetails.classList.add("bookDetails");
+    bookDetails.innerHTML = ""
     const bookDescription = document.createElement('p')
+    const modalHeading = document.createElement('h1')
     const author = document.createElement('h4')
+    const detailedBookThumbnail = document.createElement('img')
+    const closeModal = document.createElement("button");
+
+    modalHeading.innerText = bookTitle
+    detailedBookThumbnail.src = bookThumbnail
     author.innerText = bookAuthor
-    console.log(author);
-
     bookDescription.innerText = description
-    bookDetails.append(thumbnail, author, bookDescription)
+closeModal.innerText = "Close";
+    closeModal.addEventListener("click", () => {
+        dialog.close();
+    });
 
-
+    bookDetails.append(modalHeading,closeModal, detailedBookThumbnail, author, bookDescription)
+    dialog.append(bookDetails)
+    dialog.showModal()
 }
-
 
 function booksView() {
     if (listView.style.display === "block") {
