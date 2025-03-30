@@ -73,28 +73,33 @@ function booksData(bookTitle, bookAuthor, bookPublisher, bookPublishedDate, book
     })
 }
 
-const dialog = document.querySelector("dialog")
+const dialog = document.querySelector("#dialog")
 function booksDetails(bookTitle, bookAuthor, description, bookThumbnail) {
     dialog.innerHTML = ""
+    dialog.classList.add("active")
     const bookDetails = document.createElement("div");
     bookDetails.classList.add("bookDetails");
-    bookDetails.innerHTML = ""
+
     const bookDescription = document.createElement('p')
     const modalHeading = document.createElement('h1')
     const author = document.createElement('h4')
     const detailedBookThumbnail = document.createElement('img')
     const closeModal = document.createElement("button");
 
+    // bookDetails.innerHTML = ""
     modalHeading.innerText = bookTitle
     detailedBookThumbnail.src = bookThumbnail
     author.innerText = bookAuthor
     bookDescription.innerText = description
-closeModal.innerText = "Close";
+
+    closeModal.innerText = "Close";
     closeModal.addEventListener("click", () => {
         dialog.close();
+        dialog.classList.remove("active")
+
     });
 
-    bookDetails.append(modalHeading,closeModal, detailedBookThumbnail, author, bookDescription)
+    bookDetails.append(modalHeading, detailedBookThumbnail, author, bookDescription, closeModal)
     dialog.append(bookDetails)
     dialog.showModal()
 }
