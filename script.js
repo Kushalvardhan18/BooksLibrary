@@ -89,7 +89,7 @@ function booksDetails(bookTitle, bookAuthor, description, bookThumbnail) {
     // bookDetails.innerHTML = ""
     modalHeading.innerText = bookTitle
     detailedBookThumbnail.src = bookThumbnail
-    author.innerText = bookAuthor
+    author.innerText = `By - ${bookAuthor}`
     bookDescription.innerText = description
 
     closeModal.innerText = "Close";
@@ -99,8 +99,8 @@ function booksDetails(bookTitle, bookAuthor, description, bookThumbnail) {
 
     });
 
-    bookDetails.append(modalHeading, detailedBookThumbnail, author, bookDescription, closeModal)
-    dialog.append(bookDetails)
+    bookDetails.append(modalHeading, detailedBookThumbnail, author, bookDescription, )
+    dialog.append(closeModal,bookDetails)
     dialog.showModal()
 }
 
