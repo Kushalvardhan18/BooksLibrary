@@ -51,6 +51,7 @@ function booksData(bookTitle, bookAuthor, bookPublisher, bookPublishedDate, book
     booksFooter.classList.add("booksFooter")
     const thumbnail = document.createElement('img')
     const title = document.createElement('h2')
+    const author = document.createElement('h3')
     const publisher = document.createElement('h4')
     const pubDate = document.createElement('h4')
 
@@ -58,11 +59,12 @@ function booksData(bookTitle, bookAuthor, bookPublisher, bookPublishedDate, book
     thumbnail.classList.add('image')
     thumbnail.src = bookThumbnail
     title.innerText = bookTitle
+    author.innerText = `By : ${bookAuthor}`
     publisher.innerText = `Published By : \n \n ${bookPublisher}`
     pubDate.innerText = `Published On : \n \n ${bookPublishedDate}`
 
     booksFooter.append(publisher, pubDate)
-    books.append(title, thumbnail, booksFooter)
+    books.append(title, thumbnail,author, booksFooter)
     booksContainer.append(books)
 
 
@@ -86,7 +88,6 @@ function booksDetails(bookTitle, bookAuthor, description, bookThumbnail) {
     const detailedBookThumbnail = document.createElement('img')
     const closeModal = document.createElement("button");
 
-    // bookDetails.innerHTML = ""
     modalHeading.innerText = bookTitle
     detailedBookThumbnail.src = bookThumbnail
     author.innerText = `By - ${bookAuthor}`
