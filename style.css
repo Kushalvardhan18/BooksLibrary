@@ -103,6 +103,11 @@ h2 {
   
 }
 
+.pageNo.active {
+  background-color: blue;
+  color: white;
+  font-weight: bold;
+}
 #dialog {
   /* max-height: 100vh; */
   overflow: auto;
