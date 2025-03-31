@@ -48,7 +48,12 @@ header h1 {
   display: flex;
   justify-content: end;
   margin: 20px 50px;
+  gap: 50px;
 }
+#sort{
+  cursor: pointer;
+}
+
 #gridView {
   width: 50px;
 }
