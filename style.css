@@ -30,6 +30,8 @@ header h1 {
   border-radius: 10px;
   padding: 20px 30px;
   gap: 30px;
+  
+  cursor: pointer;
 }
 .image {
   height: 200px;
