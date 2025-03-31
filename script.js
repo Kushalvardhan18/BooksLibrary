@@ -3,7 +3,7 @@ const listView = document.querySelector('#listView');
 const booksContainer = document.querySelector('.booksContainer');
 const pagination = document.querySelector('.pagination');
 const dialog = document.querySelector("#dialog");
-let pageNo = 1; // Start from page 1
+let pageNo = 1; 
 
 function paginationFn(totalPages) {
     pagination.innerHTML = "";
@@ -60,8 +60,8 @@ function paginationFn(totalPages) {
 }
 
 function getData() {
-    const url = `https://api.freeapi.app/api/v1/public/books?page=${pageNo}`; // Dynamic URL
-    booksContainer.innerHTML = ""; // Clear previous results
+    const url = `https://api.freeapi.app/api/v1/public/books?page=${pageNo}`; 
+    booksContainer.innerHTML = ""; 
 
     fetch(url)
         .then((response) => response.json())
@@ -158,7 +158,7 @@ function booksView() {
     }
 }
 
-// Initial Call
+
 getData();
 gridView.addEventListener('click', booksView);
 listView.addEventListener('click', booksView);
